@@ -1,3 +1,8 @@
+# Matriz A(NxM)
+$a = []
+# Matriz B(NxM)
+$b = []
+
 seleccionado = false
 
 while(!seleccionado)
