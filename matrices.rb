@@ -7,7 +7,7 @@ def asignar_matriz_teclado(a, filas, columnas)
 	i = 0
 	while( i < filas ) 
 		j = 0
-		fila = []
+		filas = []
 		while(j < columnas)
 			print "Inserte elemento ", i,",", j, ": "
 			fila << gets.to_i
@@ -20,23 +20,40 @@ def asignar_matriz_teclado(a, filas, columnas)
 end
 
 def leer_teclado
-	print "Inserte numero de filas: "
+	print "Inserte numero de filas (y columnas): "
 	while(	(filas = gets.to_i) < 1)
 		print "Error, intentelo de nuevo: "
 	end
-	
-	print "Inserte numero de columnas: "
-	while(	(columnas = gets.to_i) < 1)
-		print "Error, intentelo de nuevo: "
-	end
-	
-	print $a[0].class
 
 	puts "Elementos de la primera matriz"
-	asignar_matriz_teclado($a, filas, columnas) {|a| p a}
+	asignar_matriz_teclado($a, filas, filas) {|a| p a}
 	
 	puts "Elementos de la segunda matriz"
-	asignar_matriz_teclado($b, filas, columnas) {|a| p a}
+	asignar_matriz_teclado($b, filas, filas) {|a| p a}
+end
+
+def producto_matrices(a, b)
+	# Suponemos que las matrices han sido verificadas por la lectura de matrices, y el usuario no hará llamadas a esta función por su cuenta
+	c = []
+	i = 0
+	while( i < a.length )
+		j = 0
+		fila = []
+		while( j < a.length )
+			k = 0
+			fila[j] = 0
+			while( k < a.length )
+				fila[j] += (a[i][k] * b[k][j] )
+				k += 1
+			end
+			j += 1
+		end
+		c << fila
+		i += 1
+	end
+	
+	yield(c)
+	return c
 end
 
 seleccionado = false
@@ -58,3 +75,8 @@ if(entrada == "teclado\n")
 else
 	# Leer datos de fichero
 end
+
+puts "Producto de matrices:"
+producto_matrices($a, $b) {|a| p a}
+
+
