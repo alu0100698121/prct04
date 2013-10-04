@@ -13,7 +13,7 @@ end
 
 print "Ha seleccionado la opcion ", entrada
 if(entrada == "teclado\n")
-    # Leer datos de fichero
+    # Leer datos de teclado
 else
 	# Leer datos de fichero
 end
