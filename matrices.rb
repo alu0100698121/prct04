@@ -14,7 +14,9 @@ def asignar_matriz_fichero(fichero, a, filas)
 	while(i < filas)
 		linea = fichero.gets
 		elementos = linea.split(' ')
-		a[i] << elementos.each.to_f
+		fila = []
+		elementos.each { |v| fila << v.to_f}
+		a << fila
 		i += 1
 	end
 	
@@ -24,14 +26,10 @@ end
 def leer_fichero
 	
 	fichero = nil
-	while(fichero == nil)
-		print "Introduzca el nombre del fichero para cargar las matrices: "
-		nombre_fichero = gets
-		fichero = File.new(nombre_fichero, "r")
-		if(fichero == nil)
-			puts "Fichero invalido"
-		end
-	end
+	print "Introduzca el nombre del fichero para cargar las matrices: "
+	nombre_fichero = gets.chomp
+	fichero = File.new(nombre_fichero, "r")
+
 
 	filas = fichero.gets.to_i
 	if(filas < 1)
@@ -39,10 +37,32 @@ def leer_fichero
 		return
 	end
 
-	asignar_matriz_fichero(fichero, $a, filas)
-	asignar_matriz_fichero(fichero, $b, filas)
+	puts "Matrices leidas: "
+
+	asignar_matriz_fichero(fichero, $a, filas) {|a| p a}
+	asignar_matriz_fichero(fichero, $b, filas) {|a| p a}
 
 	fichero.close
+
+end
+
+def suma_matrices(a,b)
+	c = []
+	i = 0
+	while(i < a.length)
+		j = 0
+		fila = []
+		while(j < a.length)
+			fila[j] = a[i][j] + b[i][j]	
+			
+			j += 1
+		end
+	c << fila
+	i += 1	
+	end
+
+	yield(c)
+	return c
 
 end
 	
@@ -66,3 +86,6 @@ if(entrada == "teclado\n")
 else
 	leer_fichero
 end
+
+puts "Suma de matrices:"
+suma_matrices($a, $b) {|a| p a}
