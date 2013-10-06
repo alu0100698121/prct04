@@ -3,7 +3,8 @@ $a = []
 # Matriz B(NxM)
 $b = []
 
-def asignar_matriz_teclado(a, filas, columnas)
+# No necesarios 2 argumentos, ya que las matrices son cuadradas
+def asignar_matriz_teclado(a, filas)
 	i = 0
 	while( i < filas ) 
 		j = 0
@@ -26,10 +27,10 @@ def leer_teclado
 	end
 
 	puts "Elementos de la primera matriz"
-	asignar_matriz_teclado($a, filas, filas) {|a| p a}
+	asignar_matriz_teclado($a, filas) {|a| p a}
 	
 	puts "Elementos de la segunda matriz"
-	asignar_matriz_teclado($b, filas, filas) {|a| p a}
+	asignar_matriz_teclado($b, filas) {|a| p a}
 end
 
 def producto_matrices(a, b)
