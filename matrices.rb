@@ -9,9 +9,9 @@ def asignar_matriz_teclado(a, filas)
 	while( i < filas ) 
 		j = 0
 		fila = []
-		while(j < columnas)
+		while(j < filas)
 			print "Inserte elemento ", i,",", j, ": "
-			fila << gets.to_i
+			fila << gets.to_f
 			j += 1
 		end
 		a << fila
